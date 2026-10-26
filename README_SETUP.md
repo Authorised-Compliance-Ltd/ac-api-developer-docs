@@ -16,4 +16,4 @@ Publish from the `main` branch repository root using Settings > Pages. Configure
 
 Each documentation page has its own `index.html`. Search results are defined in `assets/search-index.json`; common JavaScript and CSS are in `assets/`.
 
-The repository is public: do not commit secrets, consumer information, internal implementation guides, or Monevo campaign configuration.
+The repository is public: do not commit secrets, consumer information, internal implementation guides, or third-party platform configuration.

@@ -4,11 +4,8 @@
 <div class="endpoint"><span class="method get">GET</span><code>Use the full results_url returned in the application response</code></div>
 
 <p>After an accepted application, the gateway may return a <code>results_url</code>. This URL points back to Authorised Compliance and contains an opaque, short-lived token.</p>
-<h2 id="current-route">Current route</h2>
-<p>The shared relay currently produces URLs shaped like:</p>
-<pre><code class="language-text">https://api.authorisedcompliance.com/Monevo/results?t=OPAQUE_TOKEN
-</code></pre>
-<p>Use the exact <code>results_url</code> returned for each application. Do not construct or substitute polling URLs.</p>
+<h2 id="returned-results-url">Returned results URL</h2>
+<p>Read the full HTTPS <code>results_url</code> from the application response. It points to the AC API and includes the token needed to retrieve results. Treat the URL as an opaque value: do not construct, modify or substitute its path or query parameters.</p>
 <h2 id="how-to-poll">How to poll</h2>
 <ol>
 <li>Read <code>results_url</code> from the initial XML response, if present.</li>
@@ -18,10 +15,10 @@
 <li>If <code>&lt;offer_results&gt;&lt;awaiting_response&gt;</code> is greater than <code>0</code>, further responses may be pending. Retry only according to your agreed polling policy.</li>
 <li>Stop when all responses have arrived or the available polling window has elapsed. Avoid aggressive or unlimited polling.</li>
 </ol>
-<pre><code class="language-http">GET /Monevo/results?t=OPAQUE_TOKEN HTTP/1.1
-Host: api.authorisedcompliance.com
-X-AC-Client-ID: YOUR_CLIENT_ID
-x-api-key: YOUR_API_KEY
+<p>For example, after extracting the full returned URL into <code>RESULTS_URL</code>:</p>
+<pre><code class="language-bash">curl --request GET "$RESULTS_URL" \
+  --header "X-AC-Client-ID: YOUR_CLIENT_ID" \
+  --header "x-api-key: YOUR_API_KEY"
 </code></pre>
 <h2 id="example-polling-result">Example polling result</h2>
 <pre><code class="language-xml">&lt;response&gt;
@@ -48,4 +45,4 @@ x-api-key: YOUR_API_KEY
 <p>Some campaigns may return final offers directly in the submission response, without a results URL. An integration must support both cases. <strong>Poll only if AC actually returns a <code>results_url</code>.</strong> An initial XML result with offers must be processed without inventing a polling link.</p>
 <h2 id="polling-interval-and-rate-limits">Polling interval and rate limits</h2>
 <p>Do not assume a specific approved polling interval from this document. Lender responses may take time. Follow the polling interval and request limits agreed with AC. Handle <code>429</code> with bounded exponential backoff, honoring <code>Retry-After</code> if supplied.</p>
-<nav class="page-nav"><a href="../../lending/fields/"><small>Previous</small>Application fields</a><a href="../../lending/responses/"><small>Next</small>Response codes</a></nav></main><aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#current-route">Current route</a><a href="#how-to-poll">How to poll</a><a href="#example-polling-result">Example polling result</a><a href="#token-security">Token security</a><a href="#one-step-versus-two-step-responses">One-step versus two-step responses</a><a href="#polling-interval-and-rate-limits">Polling interval and rate limits</a></aside></div><footer class="footer"><span>&copy; 2026 Authorised Compliance Ltd. All rights reserved.</span><span>Developer documentation</span></footer></div></div><div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search documentation"><div class="search-panel"><div class="search-top"><span>&#8981;</span><input id="search-input" autocomplete="off" aria-label="Search documentation" placeholder="Search API reference..."><button class="search-close" id="search-close">Esc</button></div><div id="search-results" class="search-results"></div></div></div><script src="../../assets/site.js" defer></script></body></html>
+<nav class="page-nav"><a href="../../lending/fields/"><small>Previous</small>Application fields</a><a href="../../lending/responses/"><small>Next</small>Response codes</a></nav></main><aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#returned-results-url">Returned results URL</a><a href="#how-to-poll">How to poll</a><a href="#example-polling-result">Example polling result</a><a href="#token-security">Token security</a><a href="#one-step-versus-two-step-responses">One-step versus two-step responses</a><a href="#polling-interval-and-rate-limits">Polling interval and rate limits</a></aside></div><footer class="footer"><span>&copy; 2026 Authorised Compliance Ltd. All rights reserved.</span><span>Developer documentation</span></footer></div></div><div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search documentation"><div class="search-panel"><div class="search-top"><span>&#8981;</span><input id="search-input" autocomplete="off" aria-label="Search documentation" placeholder="Search API reference..."><button class="search-close" id="search-close">Esc</button></div><div id="search-results" class="search-results"></div></div></div><script src="../../assets/site.js" defer></script></body></html>

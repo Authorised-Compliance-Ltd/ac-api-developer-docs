@@ -27,7 +27,7 @@
 <tr>
   <td>Poll submitted application results</td>
   <td>GET</td>
-  <td>Use the <code>results_url</code> returned by AC (currently generated under <code>/Monevo/results</code>)</td>
+  <td>Use the exact <code>results_url</code> returned by AC</td>
   <td>Available via returned URL</td>
 </tr>
 </tbody>
@@ -37,7 +37,7 @@
 <ul>
 <li><strong>HTTP success and lending outcomes are different.</strong> An HTTP <code>200</code> may contain an XML decline or validation result.</li>
 <li><strong>An application can complete immediately or require polling.</strong> Do not assume every initial response includes <code>results_url</code>.</li>
-<li><strong>Do not build a Monevo URL yourself.</strong> Use only the AC response's <code>results_url</code> for polling.</li>
+<li><strong>Use the returned results link.</strong> Poll only the exact HTTPS <code>results_url</code> supplied by AC.</li>
 <li><strong>Keep credentials server-side.</strong> This API is not designed for untrusted browser clients.</li>
 </ul>
 <h2 id="integration-sequence">Integration sequence</h2>

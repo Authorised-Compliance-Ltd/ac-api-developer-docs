@@ -79,10 +79,10 @@
   &lt;reference&gt;EXAMPLE_REFERENCE&lt;/reference&gt;
   &lt;message&gt;Submitted&lt;/message&gt;
   &lt;error&gt;&lt;code /&gt;&lt;desc /&gt;&lt;/error&gt;
-  &lt;results_url&gt;https://api.authorisedcompliance.com/Monevo/results?t=OPAQUE_TOKEN&lt;/results_url&gt;
+  &lt;results_url&gt;AC_RESULTS_URL_FROM_RESPONSE&lt;/results_url&gt;
 &lt;/response&gt;
 </code></pre>
-<p>When <code>result=10</code>, the current relay requires a valid downstream results link and returns an AC-controlled link. The exact returned <code>results_url</code> is authoritative: <strong>do not construct or replace it</strong>.</p>
+<p><code>AC_RESULTS_URL_FROM_RESPONSE</code> represents the full HTTPS URL supplied by AC. When <code>result=10</code>, use the returned <code>results_url</code> exactly as received: <strong>do not construct or replace it</strong>.</p>
 <h2 id="example-no-eligible-offers">Example: no eligible offers</h2>
 <pre><code class="language-xml">&lt;response&gt;
   &lt;result&gt;22&lt;/result&gt;
