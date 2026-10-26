@@ -1,6 +1,6 @@
-# Authorised Compliance Developer Portal
+# Authorised Compliance Ltd Developer Portal
 
-Static API documentation for Authorised Compliance, published with GitHub Pages.
+Static API documentation for Authorised Compliance Ltd, published with GitHub Pages.
 
 ## Contents
 

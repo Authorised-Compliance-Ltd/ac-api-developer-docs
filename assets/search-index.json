@@ -2,13 +2,13 @@
   {
     "title": "Developer portal",
     "path": "",
-    "desc": "Overview of the Authorised Compliance developer portal.",
+    "desc": "Overview of the Authorised Compliance Ltd developer portal.",
     "keywords": " Start here "
   },
   {
     "title": "Lending API",
     "path": "lending/",
-    "desc": "The current Authorised Compliance lending integration.",
+    "desc": "The current Authorised Compliance Ltd lending integration.",
     "keywords": "lending Overview "
   },
   {
