@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="Get started with a server-to-server XML request."><title>Quick start | Authorised Compliance Developer Docs</title><link rel="stylesheet" href="../../assets/styles.css"></head><body data-root="../../"><div class="overlay-shade" id="sidebar-shade"></div><div class="site"><aside class="sidebar" id="sidebar"><a class="brand" href="../../"><span class="brand-logo">AC</span><span><strong>AUTHORISED<br>COMPLIANCE</strong><small>Developer documentation</small></span></a><nav class="nav"><div class="nav-section">START</div><a class="" href="../../"><span class="nav-icon">&#8250;</span>Developer portal</a><div class="nav-section">LENDING API</div><a class="" href="../../lending/"><span class="nav-icon">&#8250;</span>Overview</a><a class="active" href="../../lending/quickstart/"><span class="nav-icon">&#9679;</span>Quick start</a><a class="" href="../../lending/authentication/"><span class="nav-icon">&#8250;</span>Authentication</a><a class="" href="../../lending/submit/"><span class="nav-icon">&#8250;</span>Submit application</a><a class="" href="../../lending/fields/"><span class="nav-icon">&#8250;</span>Application fields</a><a class="" href="../../lending/results/"><span class="nav-icon">&#8250;</span>Retrieve results</a><a class="" href="../../lending/responses/"><span class="nav-icon">&#8250;</span>Response codes</a><a class="" href="../../lending/errors/"><span class="nav-icon">&#8250;</span>Errors and retries</a><a class="" href="../../lending/testing/"><span class="nav-icon">&#8250;</span>Testing and launch</a><a class="" href="../../lending/security/"><span class="nav-icon">&#8250;</span>Security and privacy</a><div class="nav-section">RESOURCES</div><a class="" href="../../changelog/"><span class="nav-icon">&#8250;</span>Changelog</a><a class="" href="../../support/"><span class="nav-icon">&#8250;</span>Support</a></nav><div class="nav-foot">Public reference &bull; Draft &bull; 26 Oct 2026</div></aside><div class="main"><header class="topbar"><button class="menu-button" aria-label="Open navigation" id="menu-open">&#9776;</button><span class="toplabel">Quick start</span><div class="top-actions"><button type="button" class="search-trigger" data-open-search><span>Search documentation</span>&#8981; <kbd>Ctrl K</kbd></button><a href="../../support/">Support</a></div></header><div class="content-wrap"><main class="article"><div class="eyebrow">LENDING / GET STARTED</div>
+
+<h1 id="quick-start">Quick start</h1>
+<p>Submit a consumer loan application from your own backend to the AC production endpoint. Use only real customer data with proper consent and an approved go-live arrangement.</p>
+<h2 id="1-obtain-credentials">1. Obtain credentials</h2>
+<p>AC provides a unique <strong>client ID</strong> and <strong>API key</strong>. Keep both in a secure server-side secret store. An API key for one client or environment must not be reused for another.</p>
+<h2 id="2-prepare-the-request">2. Prepare the request</h2>
+<pre><code class="language-http">POST /post HTTP/1.1
+Host: api.authorisedcompliance.com
+Content-Type: application/xml
+X-AC-Client-ID: YOUR_CLIENT_ID
+x-api-key: YOUR_API_KEY
+</code></pre>
+<p>The body must be a flat XML application containing supported fields. This is an <strong>illustrative mapping</strong>, not a ready-to-submit production customer application:</p>
+<pre><code class="language-xml">&lt;application&gt;
+  &lt;affiliate_app_id&gt;YOUR_UNIQUE_APPLICATION_REFERENCE&lt;/affiliate_app_id&gt;
+  &lt;loan_amount&gt;5000&lt;/loan_amount&gt;
+  &lt;loan_purpose&gt;8&lt;/loan_purpose&gt;
+  &lt;loan_term&gt;48&lt;/loan_term&gt;
+  &lt;first_name&gt;FIRST_NAME&lt;/first_name&gt;
+  &lt;last_name&gt;LAST_NAME&lt;/last_name&gt;
+  &lt;dob&gt;YYYY-MM-DD&lt;/dob&gt;
+  &lt;postcode&gt;POSTCODE&lt;/postcode&gt;
+  &lt;gross_annual_income&gt;ANNUAL_INCOME_IN_GBP&lt;/gross_annual_income&gt;
+  &lt;!-- Include all other required Monevo fields from the field guide --&gt;
+&lt;/application&gt;
+</code></pre>
+<p>AC injects the downstream campaign configuration and mode. <strong>Do not send</strong> <code>campaign_code</code> or <code>mode</code> fields: the relay rejects them.</p>
+<h2 id="3-read-the-xml-response">3. Read the XML response</h2>
+<p>After an HTTP <code>200</code>, inspect <code>&lt;result&gt;</code> in the XML, not the HTTP status alone.</p>
+<ul>
+<li><code>&lt;result&gt;10&lt;/result&gt;</code>: accepted for processing; expect an AC <code>results_url</code> and poll it.</li>
+<li>An offer or decline may already be final in the initial response; handle it without assuming polling is required.</li>
+<li>A business-level rejection may still arrive over HTTP <code>200</code>.</li>
+</ul>
+<p>See <a href="../responses/">Response codes</a> and <a href="../results/">Retrieve results</a>.</p>
+<h2 id="4-poll-only-when-the-response-supplies-a-url">4. Poll only when the response supplies a URL</h2>
+<p>For a response containing a <code>results_url</code>, send a <code>GET</code> request to that exact HTTPS URL using <strong>the same client credentials</strong>. The gateway's results token is short lived and bound to the submitting client.</p>
+<h2 id="5-complete-integration-acceptance-tests">5. Complete integration acceptance tests</h2>
+<p>Before live traffic, verify invalid key rejection, malformed XML rejection, correct one-step and two-step handling, cross-client isolation, and timeout behaviour. See <a href="../testing/">Testing and launch</a>.</p>
+<nav class="page-nav"><a href="../../lending/"><small>Previous</small>Lending API</a><a href="../../lending/authentication/"><small>Next</small>Authentication</a></nav></main><aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#1-obtain-credentials">1. Obtain credentials</a><a href="#2-prepare-the-request">2. Prepare the request</a><a href="#3-read-the-xml-response">3. Read the XML response</a><a href="#4-poll-only-when-the-response-supplies-a-url">4. Poll only when the response supplies a URL</a><a href="#5-complete-integration-acceptance-tests">5. Complete integration acceptance tests</a></aside></div><footer class="footer"><span>&copy; 2026 Authorised Compliance Ltd. All rights reserved.</span><span><a href="../../changelog/">Changelog</a> &nbsp;&middot;&nbsp; Draft documentation &nbsp;&middot;&nbsp; No customer data or credentials on this site</span></footer></div></div><div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search documentation"><div class="search-panel"><div class="search-top"><span>&#8981;</span><input id="search-input" autocomplete="off" aria-label="Search documentation" placeholder="Search API reference..."><button class="search-close" id="search-close">Esc</button></div><div id="search-results" class="search-results"></div></div></div><script src="../../assets/site.js" defer></script></body></html>

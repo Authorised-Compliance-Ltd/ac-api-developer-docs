@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Developer portal",
+    "path": "",
+    "desc": "Overview of the Authorised Compliance developer portal.",
+    "keywords": " Start here "
+  },
+  {
+    "title": "Lending API",
+    "path": "lending/",
+    "desc": "The current Authorised Compliance lending integration.",
+    "keywords": "lending Overview "
+  },
+  {
+    "title": "Quick start",
+    "path": "lending/quickstart/",
+    "desc": "Get started with a server-to-server XML request.",
+    "keywords": "lending quickstart Quick start "
+  },
+  {
+    "title": "Authentication",
+    "path": "lending/authentication/",
+    "desc": "Client ID, API key and access rules.",
+    "keywords": "lending authentication Authentication "
+  },
+  {
+    "title": "Submit an application",
+    "path": "lending/submit/",
+    "desc": "POST /post details and examples.",
+    "keywords": "lending submit Submit an application post submit xml loan"
+  },
+  {
+    "title": "Application fields",
+    "path": "lending/fields/",
+    "desc": "Required fields and supported parameter names.",
+    "keywords": "lending fields Application fields "
+  },
+  {
+    "title": "Retrieve results",
+    "path": "lending/results/",
+    "desc": "Use the returned results_url to poll safely.",
+    "keywords": "lending results Retrieve results get results polling token"
+  },
+  {
+    "title": "Response codes",
+    "path": "lending/responses/",
+    "desc": "Understand loan and polling XML result codes.",
+    "keywords": "lending responses Response codes "
+  },
+  {
+    "title": "Errors and retries",
+    "path": "lending/errors/",
+    "desc": "HTTP error handling and safe recovery.",
+    "keywords": "lending errors Errors and retries "
+  },
+  {
+    "title": "Testing and launch",
+    "path": "lending/testing/",
+    "desc": "Integration acceptance tests and production checks.",
+    "keywords": "lending testing Testing and launch "
+  },
+  {
+    "title": "Security and privacy",
+    "path": "lending/security/",
+    "desc": "Authentication, confidentiality and data handling.",
+    "keywords": "lending security Security and privacy "
+  },
+  {
+    "title": "Changelog",
+    "path": "changelog/",
+    "desc": "Changes to the published integration surface.",
+    "keywords": "changelog Changelog "
+  },
+  {
+    "title": "Support",
+    "path": "support/",
+    "desc": "How to raise a technical integration issue.",
+    "keywords": "support Support "
+  }
+]
