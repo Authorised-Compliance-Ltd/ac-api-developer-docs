@@ -54,27 +54,9 @@
     "keywords": "lending errors Errors and retries "
   },
   {
-    "title": "Testing and launch",
-    "path": "lending/testing/",
-    "desc": "Integration acceptance tests and production checks.",
-    "keywords": "lending testing Testing and launch "
-  },
-  {
     "title": "Security and privacy",
     "path": "lending/security/",
     "desc": "Authentication, confidentiality and data handling.",
     "keywords": "lending security Security and privacy "
-  },
-  {
-    "title": "Changelog",
-    "path": "changelog/",
-    "desc": "Changes to the published integration surface.",
-    "keywords": "changelog Changelog "
-  },
-  {
-    "title": "Support",
-    "path": "support/",
-    "desc": "How to raise a technical integration issue.",
-    "keywords": "support Support "
   }
 ]
